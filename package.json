@@ -2,7 +2,7 @@
   "name": "nitin-resume",
   "version": "0.0.0",
   "private": true,
-  "homepage": "https://n3hifriends.github.io/nitin-resume",
+  "homepage": "https://n3hifriends.github.io/nitin-resume/",
   "type": "module",
   "scripts": {
     "dev": "vite",
