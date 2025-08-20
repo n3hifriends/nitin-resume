@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, Linkedin, Github, Download, ArrowRight, Award, Building2, BriefcaseBusiness, Cpu, Layers, Rocket, Star, Trophy, ChevronRight, Link as LinkIcon } from "lucide-react";
+import {
+  Mail, Phone, Linkedin, Github, Download, ArrowRight, Award, Building2,
+  BriefcaseBusiness, Cpu, Layers, Rocket, Star, Trophy, ChevronRight,
+  Link as LinkIcon, Smartphone
+} from "lucide-react";
 
 const PROFILE = {
   name: "Nitin Kalokhe",
@@ -135,7 +139,7 @@ function useTheme() {
 export default function ResumeSite() {
   const { theme, setTheme } = useTheme();
   const [currentSection, setCurrentSection] = useState('top');
-  const sectionIds = ['experience','portfolio','tech','leadership','awards','education'];
+  const sectionIds = ['experience','portfolio','android','ios','tech','leadership','awards','education'];
 
   useEffect(() => {
     const handler = () => {
@@ -210,6 +214,14 @@ export default function ResumeSite() {
                 <a href={`tel:${PROFILE.phone.replace(/\s/g,'')}`} className="inline-flex items-center gap-2 rounded-2xl border px-4 py-2 hover:bg-accent"><Phone className="w-4 h-4" /> {PROFILE.phone}</a>
                 <a href={PROFILE.linkedin} target="_blank" className="inline-flex items-center gap-2 rounded-2xl border px-4 py-2 hover:bg-accent"><Linkedin className="w-4 h-4" /> LinkedIn</a>
               </div>
+              <div className="mt-4 flex gap-3">
+                <button onClick={() => smoothTo('android')} className="inline-flex items-center gap-2 rounded-2xl border px-4 py-2 hover:bg-accent" aria-label="View Android apps">
+                  <Smartphone className="w-4 h-4" /> Android Apps
+                </button>
+                <button onClick={() => smoothTo('ios')} className="inline-flex items-center gap-2 rounded-2xl border px-4 py-2 hover:bg-accent" aria-label="View iOS apps">
+                  <Smartphone className="w-5 h-5" /> iOS Apps
+                </button>
+              </div>
               <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
                 <Stat value={`${PROFILE.yearsExp}+`} label="Years experience" />
                 <Stat value={`${PROFILE.teamSize}+`} label="Team scaled & led" />
@@ -264,6 +276,49 @@ export default function ResumeSite() {
               <div className="text-sm text-muted-foreground mt-1">{a.platform}</div>
               <div className="mt-4 text-sm">At-scale deployments, analytics, and engagement.</div>
             </motion.a>
+          ))}
+        </div>
+      </Section>
+
+      {/* Android apps list */}
+      <Section id="android" title="Android Apps (Google Play)" icon={<Smartphone className="w-6 h-6" />}> 
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {[ 
+            { name: 'Digit Insurance', href: 'https://play.google.com/store/apps/details?id=com.godigit.digit' },
+            { name: 'Insurance Wallet', href: 'https://play.google.com/store/apps/details?id=com.ba.cp.controller' },
+            { name: 'Digit Partner', href: 'https://play.google.com/store/apps/details?id=com.godigit.posp' },
+            { name: 'Digit Workshop', href: 'https://play.google.com/store/apps/details?id=com.godigit.digitworkshop' },
+            { name: 'Digit Edge', href: 'https://play.google.com/store/apps/details?id=com.digit_insurance' },
+            { name: 'Digit Quick Scan', href: 'https://play.google.com/store/apps/details?id=com.godigit.digitselfinspection' },
+            { name: 'IInspect', href: 'https://play.google.com/store/apps/details?id=com.bajajallianz.iinspect' },
+          ].map((a) => (
+            <a key={a.name} href={a.href} target="_blank" className="group rounded-2xl border bg-card p-5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between">
+                <div className="font-semibold">{a.name}</div>
+                <LinkIcon className="w-4 h-4 opacity-70 group-hover:opacity-100" />
+              </div>
+              <div className="text-sm text-muted-foreground mt-1">Google Play</div>
+            </a>
+          ))}
+        </div>
+      </Section>
+
+      {/* iOS apps list */}
+      <Section id="ios" title="iOS Apps (Apple App Store)" icon={<Smartphone className="w-6 h-6" />}> 
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {[ 
+            { name: 'Digit Insurance', href: 'https://apps.apple.com/in/app/digit-insurance/id1453841964' },
+            { name: 'Digit Partner', href: 'https://apps.apple.com/in/app/digit-partner/id1629409793' },
+            { name: 'Digit Quick Scan', href: 'https://apps.apple.com/in/app/digit-quick-scan/id1613484113' },
+            { name: 'Insurance Wallet', href: 'https://apps.apple.com/in/app/caringly-yours-insurance-app/id982500448' },
+          ].map((a) => (
+            <a key={a.name} href={a.href} target="_blank" className="group rounded-2xl border bg-card p-5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center justify-between">
+                <div className="font-semibold">{a.name}</div>
+                <LinkIcon className="w-4 h-4 opacity-70 group-hover:opacity-100" />
+              </div>
+              <div className="text-sm text-muted-foreground mt-1">App Store</div>
+            </a>
           ))}
         </div>
       </Section>
