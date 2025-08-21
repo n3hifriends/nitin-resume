@@ -2,5 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply font-muli;
+  }
 :root { color-scheme: light; }
 :root.dark { color-scheme: dark; }
